@@ -1,0 +1,14 @@
+* {
+  font-family: Arial, Arial, Helvetica, sans-serif;
+  line-height: 1.4;
+}
+
+h1 {
+  color: white;
+  text-align: center;
+}
+
+.header {
+  /* border: 5px solid black; */
+  background: black; 
+}
