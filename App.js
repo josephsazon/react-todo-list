@@ -9,10 +9,12 @@ import TodoList from './components/TodoList.js';
 import './App.css';
 
 class App extends Component {
+  // state
   state = {
     todos: [],
   }
 
+  // lifecycle methods
   componentDidMount() {
     Axios
       .get('https://jsonplaceholder.typicode.com/todos?_limit=5')
@@ -29,13 +31,15 @@ class App extends Component {
         />
         <TodoList 
           todos={this.state.todos}
-          markComplete={this.markComplete}
+          markComplete={this._markComplete}
+          onRemoveTodo={this._onRemoveTodo}
         />
       </React.Fragment>
     )
   }
 
-  markComplete = (id) => {
+  // private methods
+  _markComplete = (id) => {
     this.setState({ todos: this.state.todos.map(todo => {
         if (todo.id === id) {
           todo.completed = !todo.completed;
@@ -44,6 +48,10 @@ class App extends Component {
         return todo;
       })
     })
+  }
+
+  _onRemoveTodo = (id) => {
+    this.setState({ todos: this.state.todos.filter(todo => todo.id !== id)})
   }
 }
 

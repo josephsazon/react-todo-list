@@ -18,17 +18,35 @@ class TodoItem extends React.Component {
       <React.Fragment>
         <div className="todo-item" style={this.getStyle()}>
           <span className="todo-item__checkbox">
-            <input type="checkbox" defaultChecked={completed} onChange={this.props.markComplete.bind(this, id)}></input>
+            <input 
+              type="checkbox" 
+              defaultChecked={completed} 
+              onChange={this.props.markComplete.bind(this, id)}
+              >
+            </input>
           </span>
           <span className="todo-item__label">
             {title}
           </span>
           <span className="todo-item__remove-btn">
+            <button 
+              style={btnStyle} 
+              onClick={this.props.onRemoveTodo.bind(this, id)}
+            >
+              x
+            </button>
           </span>
         </div>
       </React.Fragment>
     )
   }
+}
+
+const btnStyle = {
+  background: "lightgray",
+  border: "0px",
+  borderRadius: "15px",
+  float: "right"
 }
 
 export default TodoItem;

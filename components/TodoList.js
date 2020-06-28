@@ -9,7 +9,11 @@ class TodoList extends React.Component {
       <React.Fragment>
         {this.props.todos.map(todo => {
           return (
-            <TodoItem todo={todo} markComplete={this.props.markComplete}/>
+            <TodoItem 
+              todo={todo} 
+              markComplete={this.props.markComplete}
+              onRemoveTodo={this.props.onRemoveTodo}
+            />
           )
         })}
       </React.Fragment>
