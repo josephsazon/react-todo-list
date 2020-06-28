@@ -3,18 +3,22 @@ import React from 'react';
 // import PropTypes from 'prop-types';
 
 class TodoItem extends React.Component {
-  // constructor() {
-  //   super();
-  // }
+  getStyle = () => {
+    return {
+      borderBottom: "1px dotted black",
+      padding: "5px 0",
+      textDecoration: this.props.todo.completed ? "line-through" : "none"
+    }
+  }
 
   render() {
     const { id, title, completed } = this.props.todo;
 
     return (
       <React.Fragment>
-        <div className="todo-item">
+        <div className="todo-item" style={this.getStyle()}>
           <span className="todo-item__checkbox">
-            <input type="checkbox" defaultChecked={completed}></input>
+            <input type="checkbox" defaultChecked={completed} onChange={this.props.markComplete.bind(this, id)}></input>
           </span>
           <span className="todo-item__label">
             {title}
@@ -25,16 +29,6 @@ class TodoItem extends React.Component {
       </React.Fragment>
     )
   }
-
-  _renderLabel = () => {
-    return (
-      <div>label</div>
-    )
-  }
 }
-
-// TodoItem.PropTypes = {
-//   todo: PropTypes.object.isRequired
-// }
 
 export default TodoItem;

@@ -4,24 +4,12 @@ import React from 'react';
 import TodoItem from './TodoItem.js';
 
 class TodoList extends React.Component {
-  constructor() {
-    super();
-
-    this.todoList = [
-      {
-        id: 1,
-        title: 'Item 1',
-        completed: false
-      }
-    ]
-  }
-
   render() {
     return (
       <React.Fragment>
-        {this.todoList.map(todoItem => {
+        {this.props.todos.map(todo => {
           return (
-            <TodoItem todo={todoItem}/>
+            <TodoItem todo={todo} markComplete={this.props.markComplete}/>
           )
         })}
       </React.Fragment>
