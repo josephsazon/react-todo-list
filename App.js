@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Axios from 'axios';
 
 // components
 import Header from './components/Header.js';
@@ -9,18 +10,15 @@ import './App.css';
 
 class App extends Component {
   state = {
-    todos: [
-      {
-        id: 1,
-        title: 'Item 1',
-        completed: false
-      },
-      {
-        id: 2,
-        title: 'Item 2',
-        completed: false
-      }
-    ]
+    todos: [],
+  }
+
+  componentDidMount() {
+    Axios
+      .get('https://jsonplaceholder.typicode.com/todos?_limit=5')
+      .then(response => {
+        this.setState({ todos: response.data })
+      })
   }
 
   render() {
