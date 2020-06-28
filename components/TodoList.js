@@ -11,7 +11,7 @@ class TodoList extends React.Component {
           return (
             <TodoItem 
               todo={todo} 
-              markComplete={this.props.markComplete}
+              onMarkTodo={this.props.onMarkTodo}
               onRemoveTodo={this.props.onRemoveTodo}
             />
           )

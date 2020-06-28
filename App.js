@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Axios from 'axios';
+import axios from 'axios';
 
 // components
 import Header from './components/Header.js';
@@ -16,7 +16,7 @@ class App extends Component {
 
   // lifecycle methods
   componentDidMount() {
-    Axios
+    axios
       .get('https://jsonplaceholder.typicode.com/todos?_limit=5')
       .then(response => {
         this.setState({ todos: response.data })
@@ -31,7 +31,7 @@ class App extends Component {
         />
         <TodoList 
           todos={this.state.todos}
-          markComplete={this._markComplete}
+          onMarkTodo={this._onMarkTodo}
           onRemoveTodo={this._onRemoveTodo}
         />
       </React.Fragment>
@@ -39,19 +39,22 @@ class App extends Component {
   }
 
   // private methods
-  _markComplete = (id) => {
-    this.setState({ todos: this.state.todos.map(todo => {
+  _onMarkTodo = (id) => {
+    this.setState({ 
+      todos: this.state.todos.map(todo => {
         if (todo.id === id) {
           todo.completed = !todo.completed;
         }
 
         return todo;
-      })
-    })
+      }),
+    });
   }
 
   _onRemoveTodo = (id) => {
-    this.setState({ todos: this.state.todos.filter(todo => todo.id !== id)})
+    this.setState({ 
+      todos: this.state.todos.filter(todo => todo.id !== id)
+    });
   }
 }
 
